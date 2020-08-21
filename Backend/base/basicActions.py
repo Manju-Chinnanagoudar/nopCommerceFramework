@@ -6,26 +6,33 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 
 from traceback import print_stack
+from utilities.logger_utility import custom_logger
 
 
 class Actions:
 
     def __init__(self, driver):
         self.driver = driver
+        self.logger = custom_logger().getlog()
         self.actions = ActionChains(driver)
 
     def get_title(self):
         """
         Returns the title of the page
         """
+        self.logger.info(
+            '*** Title of the page "{}" retrived'.format(self.driver.title))
         return self.driver.title
 
     def send_keys_to(self, element, data):
         try:
             element.clear()
             element.send_keys(data)
+            self.logger, info(
+                '*** Entered {0} to the field {1}'.format(data, element))
         except WebDriverException:
-            print_stack()
+            self.logger.error(
+                '!!! Failed to send text to {} field'.format(element))
 
     def click_element(self, element):
         try:

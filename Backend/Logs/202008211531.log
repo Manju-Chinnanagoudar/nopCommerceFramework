@@ -1,0 +1,5 @@
+2020-08-21 15:31:44,739 - root - INFO - *** Login Test started
+2020-08-21 15:31:53,957 - root - INFO - *** Login Test completed
+2020-08-21 15:32:02,305 - root - INFO - *** Login Page Title validation started
+2020-08-21 15:32:02,329 - root - INFO - Page title is 'Your store. Login'
+2020-08-21 15:32:02,329 - root - INFO - Login Page title validation completed

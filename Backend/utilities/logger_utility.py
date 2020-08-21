@@ -1,13 +1,41 @@
 import logging
+import os.path
+import time
 
 
 class custom_logger:
+    def __init__(self):
+        '''''
+            指定保存日志的文件路径，日志级别，以及调用文件
+            将日志存入到指定的文件中
+        '''
 
-    @staticmethod
-    def cust_log():
-        logging.basicConfig(filename='Backend//Logs//application.log',
-                            format="%(asctime)s: %(levelname)s: %(message)s",
-                            datefmt='%m/%d/%Y %I:%M:%S %p')
-        logger = logging.getLogger()
-        logger.setLevel(logging.INFO)
-        return logger
+        # Create logger
+        self.logger = logging.getLogger()
+        self.logger.setLevel(logging.DEBUG)
+
+        # Create handler，to write logs
+        rq = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
+        log_path = os.path.dirname(os.path.abspath(
+            '.')) + '\\nopCommerceFramework\\Backend\\Logs\\'
+        log_name = log_path + rq + '.log'
+
+        fh = logging.FileHandler(log_name)
+        fh.setLevel(logging.INFO)
+
+        # Create handler，For Output
+        #ch = logging.StreamHandler()
+        # ch.setLevel(logging.INFO)
+
+        # Output format of the handler
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        # ch.setFormatter(formatter)
+
+        # 给logger添加handler
+        self.logger.addHandler(fh)
+        # self.logger.addHandler(ch)
+
+    def getlog(self):
+        return self.logger

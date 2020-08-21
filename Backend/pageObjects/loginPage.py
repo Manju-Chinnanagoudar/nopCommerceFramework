@@ -40,5 +40,6 @@ class LoginPage(BasePage):
             if rememberMe == 'Yes':
                 self.click_element(_rememberMe_element)
             self.click_element(_login_element)
+
         except:
             print_stack()
