@@ -5,13 +5,16 @@ import time
 
 class custom_logger:
     def __init__(self):
-        '''''
-            指定保存日志的文件路径，日志级别，以及调用文件
-            将日志存入到指定的文件中
-        '''
+        """
+            Initializes the logger object.
+                * Spcefied the log file path.
+                * Sepcified the log format
+                * Specified the log level
+        """
 
         # Create logger
         self.logger = logging.getLogger()
+
         self.logger.setLevel(logging.DEBUG)
 
         # Create handler，to write logs
@@ -23,19 +26,14 @@ class custom_logger:
         fh = logging.FileHandler(log_name)
         fh.setLevel(logging.INFO)
 
-        # Create handler，For Output
-        #ch = logging.StreamHandler()
-        # ch.setLevel(logging.INFO)
-
         # Output format of the handler
         formatter = logging.Formatter(
             '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         fh.setFormatter(formatter)
-        # ch.setFormatter(formatter)
 
-        # 给logger添加handler
+        # Adding handler to logger object
         self.logger.addHandler(fh)
-        # self.logger.addHandler(ch)
 
     def getlog(self):
         return self.logger
+        # self.logger.removeHandler(fh)
